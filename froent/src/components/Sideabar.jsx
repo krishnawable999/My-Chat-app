@@ -7,10 +7,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import SearchIcon from '@mui/icons-material/Search';
 import ConversationItem from './ConversationItem';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function Sideabar() {
+    const navigate =  useNavigate();
     const [conversations, setConversations] = useState([
         {
             name: "Task1",
@@ -28,25 +30,27 @@ export default function Sideabar() {
             timeStamp: "today",
         }
     ]);
+
+   
   return (
     <div className="flex-[0.3] flex-col flex">
-      <div className="bg-white rounded-2xl px-[5px] py-[10px] m-[10px] flex justify-between">
+      <div className="bg-white rounded-2xl px-[5px] py-[10px] m-[10px] flex justify-between shadow1">
         <div>
-        <IconButton>
+        <IconButton >
             <AccountCircleIcon/>
         </IconButton>
         </div>
 
         <div>
-        <IconButton>
+        <IconButton onClick={()=>{navigate('users')}}>
             <PersonAddIcon/>
         </IconButton>
 
-        <IconButton>
+        <IconButton onClick={()=>{navigate('group')}}>
             <GroupAddIcon/>
         </IconButton>
 
-        <IconButton>
+        <IconButton onClick={()=>{navigate('crate-groups')}}>
             <AddCircleIcon/>
         </IconButton>
 
@@ -55,17 +59,17 @@ export default function Sideabar() {
         </IconButton>
         </div>
       </div>
-      <div className="flex items-center bg-white rounded-[20px] px-[10px] py-[10px] m-[10px] font-medium gap-3">
+      <div className="flex items-center bg-white rounded-[20px] px-[10px] py-[10px] m-[10px] font-medium gap-3 shadow1">
       <IconButton><SearchIcon/></IconButton>
         
     
         <input className="outline-none " placeholder="Search"/>
         
       </div>
-      <div className="bg-white rounded-2xl px-[5px] py-[10px] m-[10px] flex-1 ">
+      <div className="bg-white rounded-2xl px-[5px] py-[10px] m-[10px] flex-1 shadow1">
         {
             conversations.map((conversation)=>{
-               return <ConversationItem props={conversation} key={conversation.name} />
+               return <ConversationItem props={conversation} key={conversation.name}/>
             })
         }
 
